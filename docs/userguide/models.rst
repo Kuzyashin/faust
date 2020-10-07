@@ -19,7 +19,7 @@ Basics
 Models describe the fields of data structures used as keys and values
 in messages.  They're defined using a ``NamedTuple``-like syntax::
 
-    class Point(Record, serializer='json'):
+    class Point(Record, serializer='json', include_metadata=False):
         x: int
         y: int
 
@@ -35,6 +35,14 @@ serializes to:
 
     >>> Point(x=10, y=100).dumps()
     {"x": 10, "y": 100}
+
+Without `include_metadata=False` argument the Point model
+serializes to:
+
+.. sourcecode:: pycon
+
+    >>> Point(x=10, y=100).dumps()
+    {"x": 10, "y": 100, "__faust": {"ns": "myapp.Point"}}
 
 To temporarily use a different serializer, provide that as an argument
 to ``.dumps``:

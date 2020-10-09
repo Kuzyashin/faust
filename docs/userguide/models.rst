@@ -36,6 +36,7 @@ serializes to:
     >>> Point(x=10, y=100).dumps()
     {"x": 10, "y": 100}
 
+
 Without `include_metadata=False` argument the Point model
 serializes to:
 
